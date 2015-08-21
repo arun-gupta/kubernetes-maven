@@ -9,6 +9,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <fabric.version>2.2.22</fabric.version>
+        <docker.image>arungupta/kubernetes-maven-sample</docker.image>
     </properties>
     <dependencies>
         <dependency>
@@ -67,6 +68,41 @@
                                     </execution>
                                 </executions>
                 -->
+            </plugin>
+            <plugin>
+                <groupId>org.jolokia</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.13.1</version>
+                <configuration>
+                    <images>
+                        <image>
+                            <alias>kubernetes-maven-sample</alias>
+                            <name>${docker.image}</name>
+                            <build>
+                                <from>jboss/wildfly:9.0.0.Final</from>
+                                <assembly>
+                                    <descriptor>assembly.xml</descriptor>
+                                    <basedir>/opt/jboss/wildfly/standalone/deployments/</basedir>
+                                    <user>jboss:jboss:jboss</user>
+                                </assembly>
+                                <ports>
+                                    <port>8080</port>
+                                </ports>
+                            </build>
+
+                            <run>
+                                <ports>
+                                    <port>8080:8080</port>
+                                </ports>
+                                <log>
+                                    <prefix>WF</prefix>
+                                    <date>none</date>
+                                    <color>cyan</color>
+                                </log>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
             </plugin>
         </plugins>
     </build>
