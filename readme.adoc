@@ -1,0 +1,7 @@
+Kubernetes Maven Sample
+=======================
+
+This example will show how to deploy a Java EE application to
+Kubernetes using Maven.
+
+
