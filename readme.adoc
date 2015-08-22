@@ -4,4 +4,13 @@ Kubernetes Maven Sample
 This example will show how to deploy a Java EE application to
 Kubernetes using Maven.
 
+. `mvn package`: Builds the WAR file
+. Setup `DOCKER_HOST`
+.. https://htmlpreview.github.io/?https://github.com/javaee-samples/docker-java/blob/master/readme.html#_docker_machine[Download Docker Machine]
+.. https://htmlpreview.github.io/?https://github.com/javaee-samples/docker-java/blob/master/readme.html#_create_lab_docker_host[Create Docker Host]
+. `mvn docker:build`: Builds the Docker image
+. `mvn fabric8:json`: Generates the Kubernetes configuration file in `target/classes` directory
+. Setup https://htmlpreview.github.io/?https://github.com/javaee-samples/docker-java/blob/master/readme.html#_download_and_start_the_cluster_together[Kubernetes cluster]
+. Setup KUBERNETES_* environment variables
+. `mvn fabric8:apply`: Deploys the application to Kubernetes
 
