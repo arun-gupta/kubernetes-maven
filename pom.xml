@@ -8,7 +8,7 @@
     <name>kubernetes-maven-sample</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fabric.version>2.2.22</fabric.version>
+        <fabric.version>2.3-SNAPSHOT</fabric.version>
         <docker.image>arungupta/kubernetes-maven-sample</docker.image>
     </properties>
     <dependencies>

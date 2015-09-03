@@ -11,6 +11,6 @@ Kubernetes using Maven.
 . `mvn docker:build`: Builds the Docker image
 . `mvn fabric8:json`: Generates the Kubernetes configuration file in `target/classes` directory
 . Setup https://htmlpreview.github.io/?https://github.com/javaee-samples/docker-java/blob/master/readme.html#_download_and_start_the_cluster_together[Kubernetes cluster]
-. Setup KUBERNETES_* environment variables
+. Set KUBERNETES_MASTER environment variable to point to the root of your kube cluster, ie `https://10.245.1.2`
 . `mvn fabric8:apply`: Deploys the application to Kubernetes
 
