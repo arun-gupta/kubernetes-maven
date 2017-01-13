@@ -4,7 +4,7 @@
     <groupId>org.javaee7.sample</groupId>
     <artifactId>kubernetes-maven-sample</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>kubernetes-maven-sample</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -13,10 +13,9 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
+            <groupId>com.couchbase.client</groupId>
+            <artifactId>java-client</artifactId>
+            <version>2.3.1</version>
         </dependency>
     </dependencies>
     <build>
@@ -24,94 +23,33 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.1</version>
+                    <artifactId>maven-assembly-plugin</artifactId>
                     <configuration>
-                        <source>1.7</source>
-                        <target>1.7</target>
+                        <archive>
+                            <manifest>
+                                <mainClass>org.example.pipeline.Main</mainClass>
+                            </manifest>
+                        </archive>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>2.3</version>
-                    <configuration>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>io.fabric8</groupId>
-                    <artifactId>fabric8-maven-plugin</artifactId>
-                    <version>${fabric.version}</version>
                     <executions>
                         <execution>
-                            <id>json</id>
-                            <phase>generate-resources</phase>
+                            <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                            <phase>package</phase> <!-- bind to the packaging phase -->
                             <goals>
-                                <goal>json</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>attach</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>attach</goal>
+                                <goal>single</goal>
                             </goals>
                         </execution>
                     </executions>
                 </plugin>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>fabric8-maven-plugin</artifactId> 
+                    <version>3.2.8</version>
+                </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.0.2.Final</version>
-                <!--
-                                <executions>
-                                    <execution>
-                                        <phase>install</phase>
-                                        <goals>
-                                            <goal>deploy</goal>
-                                        </goals>
-                                    </execution>
-                                </executions>
-                -->
-            </plugin>
-            <plugin>
-                <groupId>org.jolokia</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.13.1</version>
-                <configuration>
-                    <images>
-                        <image>
-                            <alias>kubernetes-maven-sample</alias>
-                            <name>${docker.image}</name>
-                            <build>
-                                <from>jboss/wildfly:9.0.0.Final</from>
-                                <assembly>
-                                    <descriptor>assembly.xml</descriptor>
-                                    <basedir>/opt/jboss/wildfly/standalone/deployments/</basedir>
-                                    <user>jboss:jboss:jboss</user>
-                                </assembly>
-                                <ports>
-                                    <port>8080</port>
-                                </ports>
-                            </build>
-
-                            <run>
-                                <ports>
-                                    <port>8080:8080</port>
-                                </ports>
-                                <log>
-                                    <prefix>WF</prefix>
-                                    <date>none</date>
-                                    <color>cyan</color>
-                                </log>
-                            </run>
-                        </image>
-                    </images>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 </project>
