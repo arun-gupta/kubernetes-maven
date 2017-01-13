@@ -1,10 +1,14 @@
-Kubernetes Maven Sample
-=======================
+= Kubernetes Maven Sample
 
-This example will show how to deploy a Java EE application to
-Kubernetes using Maven.
+This example will show how to deploy a Java application to a Kubernetes cluster using Maven.
+
+== Working
 
 . `mvn package`: Builds the WAR file
+. `mvn exec:java`: Runs the application with a Couchbase server running on `localhost`
+
+== Needs debugging
+
 . `mvn fabric8:build`: Builds the Docker image and generated Kubernetes resources
 . `mvn fabric8:resource`: Generates the Kubernetes configuration file in `target/classes/META-INF/fabric8` directory
 . Set KUBERNETES_MASTER environment variable to point to the root of your kube cluster, ie `https://10.245.1.2`
