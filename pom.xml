@@ -7,15 +7,14 @@
     <packaging>jar</packaging>
     <name>kubernetes-maven-sample</name>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fabric.version>2.2.29</fabric.version>
-        <docker.image>arungupta/kubernetes-maven-sample</docker.image>
+        <java.version>1.8</java.version>
+        <fabric8.generator.java.name>arungupta/${project.artifactId}</fabric8.generator.java.name>
     </properties>
     <dependencies>
         <dependency>
             <groupId>com.couchbase.client</groupId>
             <artifactId>java-client</artifactId>
-            <version>2.3.1</version>
+            <version>2.4.0</version>
         </dependency>
     </dependencies>
     <build>
