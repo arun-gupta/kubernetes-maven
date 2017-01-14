@@ -1,8 +1,8 @@
 = Kubernetes Maven Sample
 
-This example will show how to deploy a Java application to a Kubernetes cluster using Maven.
+This example will show how to deploy a Java application to a Kubernetes cluster using Maven. It requires to run a Couchbase server. It can be easily started on https://github.com/couchbase-guides/couchbase-amazon-cli[AWS] or using https://github.com/couchbase-guides/couchbase-docker[Docker].
 
-== Working
+== Main Targets
 
 . `mvn package`: Builds the WAR file
 . `mvn install`: Builds the Docker image
