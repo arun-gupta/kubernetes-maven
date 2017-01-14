@@ -5,12 +5,13 @@ This example will show how to deploy a Java application to a Kubernetes cluster 
 == Working
 
 . `mvn package`: Builds the WAR file
+. `mvn install`: Builds the Docker image
 . `mvn exec:java`: Runs the application with a Couchbase server running on `localhost`
+. `mvn fabric8:apply`: Deploys the application to Kubernetes
+.. By default, the Kubernetes cluster is `localhost`. Set KUBERNETES_MASTER environment variable to point to Kubernetes master.
 
-== Needs debugging
+== Additional Targets
 
 . `mvn fabric8:build`: Builds the Docker image and generated Kubernetes resources
 . `mvn fabric8:resource`: Generates the Kubernetes configuration file in `target/classes/META-INF/fabric8` directory
-. Set KUBERNETES_MASTER environment variable to point to the root of your kube cluster, ie `https://10.245.1.2`
-. `mvn fabric8:apply`: Deploys the application to Kubernetes
 
