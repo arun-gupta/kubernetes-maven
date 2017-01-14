@@ -15,5 +15,5 @@ This example will show how to deploy a Java application to a Kubernetes cluster 
 . `mvn fabric8:build`: Builds the Docker image and generated Kubernetes resources
 . `mvn fabric8:resource`: Generates the Kubernetes configuration file in `target/classes/META-INF/fabric8` directory
 
-Interested in learning more about deploying your Java applications with Kubernetes? More details at https://github.com/arun-gupta/kubernetes-java-sample/.
+More content on deploying your Java applications with Kubernetes at https://github.com/arun-gupta/kubernetes-java-sample/.
 
